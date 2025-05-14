@@ -4,6 +4,9 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
 
@@ -27,3 +30,10 @@ def clean_text(text):
 def preprocess_custom(series):
     
     return series.apply(clean_text)
+
+def tokengen(texts, vocab_size=20000, max_len=200):
+    tokenizer = Tokenizer(num_words=vocab_size, oov_token="<OOV>")
+    tokenizer.fit_on_texts(texts)
+    sequences = tokenizer.texts_to_sequences(texts)
+    padded = pad_sequences(sequences, maxlen=max_len, padding='post')
+    return tokenizer, padded
