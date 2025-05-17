@@ -8,7 +8,7 @@ After preprocessing the data 4 models were implemented:
 1. TF-IDF + Random Forest
 2. Keras Embedding + Conv1D
 3. Word2Vec + LSTM
-# 4. BERT + Dense
+4. BERT + Dense
 
 I compared the accuracy of all the models using the percentage of accuracy and
 the indicators of the confusion matrix. Here's the results:
